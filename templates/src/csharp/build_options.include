@@ -1,5 +1,11 @@
 <%page args="executable=False,includeData=False"/>\
 "buildOptions": {
+  "define": [ "SIGNED" ],
+  "keyFile": "../keys/Grpc.snk",
+  "publicSign": true,
+  "compile": {
+    "includeFiles": [ "../Grpc.Core/Version.cs" ]
+  },
   % if executable:
     "emitEntryPoint": true
   % endif
@@ -8,13 +14,7 @@
   "configurations": {
     "Debug": {
       "buildOptions": {
-        "define": [ "SIGNED" ],
-        "keyFile": "../keys/Grpc.snk",
-        "publicSign": true,
         "xmlDoc": true,
-        "compile": {
-          "includeFiles": [ "../Grpc.Core/Version.cs" ]
-        },
         "copyToOutput": {
           % if includeData:
           "include": "data/*",
@@ -30,13 +30,7 @@
     },
     "Release": {
       "buildOptions": {
-        "define": [ "SIGNED" ],
-        "keyFile": "../keys/Grpc.snk",
-        "publicSign": true,
         "xmlDoc": true,
-        "compile": {
-          "includeFiles": [ "../Grpc.Core/Version.cs" ]
-        },
         "copyToOutput": {
           % if includeData:
           "include": "data/*",
@@ -50,10 +44,5 @@
         }
       }
     }
-  },
-  "runtimes": {
-    "win7-x64": { },
-    "debian.8-x64": { },
-    "osx.10.11-x64": { }
   },
   % endif
